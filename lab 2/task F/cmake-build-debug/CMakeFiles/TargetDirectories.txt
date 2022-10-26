@@ -1,0 +1,3 @@
+F:/Labs/1 sem/algo/lab2/task F/cmake-build-debug/CMakeFiles/task_F.dir
+F:/Labs/1 sem/algo/lab2/task F/cmake-build-debug/CMakeFiles/edit_cache.dir
+F:/Labs/1 sem/algo/lab2/task F/cmake-build-debug/CMakeFiles/rebuild_cache.dir

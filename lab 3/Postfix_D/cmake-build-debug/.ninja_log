@@ -1,0 +1,17 @@
+# ninja log v5
+0	377	6873898997660182	CMakeFiles/Postfix_D.dir/main.cpp.obj	b9fc5f9b8d4f1bc7
+378	541	6873898999280355	Postfix_D.exe	30b01af4eceb036a
+2	295	6873899169385380	CMakeFiles/Postfix_D.dir/main.cpp.obj	b9fc5f9b8d4f1bc7
+295	361	6873899170025373	Postfix_D.exe	30b01af4eceb036a
+1	299	6873900108422372	CMakeFiles/Postfix_D.dir/main.cpp.obj	b9fc5f9b8d4f1bc7
+299	372	6873900109132495	Postfix_D.exe	30b01af4eceb036a
+2	312	6873902223776393	CMakeFiles/Postfix_D.dir/main.cpp.obj	b9fc5f9b8d4f1bc7
+312	377	6873902224386392	Postfix_D.exe	30b01af4eceb036a
+1	296	6873902392826960	CMakeFiles/Postfix_D.dir/main.cpp.obj	b9fc5f9b8d4f1bc7
+297	348	6873902393326961	Postfix_D.exe	30b01af4eceb036a
+1	355	6873909021084129	CMakeFiles/Postfix_D.dir/main.cpp.obj	b9fc5f9b8d4f1bc7
+355	569	6873909023184121	Postfix_D.exe	30b01af4eceb036a
+1	334	6873911521596689	CMakeFiles/Postfix_D.dir/main.cpp.obj	b9fc5f9b8d4f1bc7
+334	426	6873911522506688	Postfix_D.exe	30b01af4eceb036a
+2	347	6884204214518247	CMakeFiles/Postfix_D.dir/main.cpp.obj	b9fc5f9b8d4f1bc7
+347	417	6884204215198413	Postfix_D.exe	30b01af4eceb036a

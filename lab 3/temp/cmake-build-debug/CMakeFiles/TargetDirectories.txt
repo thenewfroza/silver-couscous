@@ -1,0 +1,3 @@
+F:/Labs/1 sem/algo/lab 3/temp/cmake-build-debug/CMakeFiles/temp.dir
+F:/Labs/1 sem/algo/lab 3/temp/cmake-build-debug/CMakeFiles/edit_cache.dir
+F:/Labs/1 sem/algo/lab 3/temp/cmake-build-debug/CMakeFiles/rebuild_cache.dir
