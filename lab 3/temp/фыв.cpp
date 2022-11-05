@@ -1,71 +1,58 @@
-#include <iostream>
-using namespace std;
-
-struct StackNode {
-    char data;
-    StackNode* link;
-};
-
-StackNode* top(char data) {
-    StackNode* stackNode = new StackNode;
-    stackNode->data = data;
-    stackNode->link = NULL;
-    return stackNode;
-}
-
-void push(StackNode** root, char new_data) {
-    StackNode* stackNode = top(new_data);
-    stackNode->link = *root;
-    *root = stackNode;
-}
-
-
-char pop(StackNode** root) {
-    StackNode* temp = *root;
-    *root = (*root)->link;
-    char popped = temp->data;
-    delete(temp);
-    return popped;
-}
-
-int isEmpty(StackNode *root) {
-    return !root;
-}
-
-char peek(StackNode* root)
-{
-    if (isEmpty(root))
-        return -1;
-    return root->data;
-}
-
+#include<iostream>
+#include<vector>
 int main() {
-    StackNode* root = NULL;
-    string str;
-    while(cin >> str) {
-        bool F=0;
-        for (int i = 0; i < str.size(); i++) {
-            if (str[i] == ')' && peek(root) == '(' || str[i] == ']' && peek(root) == '[') {
-                pop(&root);
-            } else if (str[i] == ')' || str[i] == ']') {
-                if (F != 1) {
-                    cout << "NO" << '\n';
-                }
-                F = 1;
-                continue ;
-            } else
-                push(&root, str[i]);
+    int l, r;
+    bool f = false;
+    int n, m;
+    std::cin >> n;
+    std::vector<int> arr(n);
+    for (int i = 0; i < n; i++) {
+        std::cin >> arr[i];
+    }
+    std::cin >> m;
+    std::vector<int> arr1(m);
+    for (int i = 0; i < m; i++) {
+        std::cin >> arr1[i];
+    }
+
+    int mid;
+
+    for (int i = 0; i < m; i++) {
+        l = 0;
+        r = n - 1;
+        f = false;
+        while (l <= r && f == false) {
+            mid = (l + r) / 2;
+            if (arr[mid] == arr1[i] && (mid == 0 || arr[mid - 1] < arr[mid]))
+                f = true;
+            else
+                    if (arr[mid] >= arr1[i])
+                r = mid -1;
+            else
+                l = mid + 1;
         }
-        if (F != 1) {
-            if (isEmpty(root))
-                cout << "YES" << '\n';
+        if (f == true)
+            std::cout << mid + 1 << ' ';
+        else {
+            std::cout << -1 << ' ' << -1 << '\n';
+            continue;
         }
-        if (F != 1) {
-            if (!isEmpty(root))
-                cout << "NO" << '\n';
+
+
+        l = mid;
+        r = n - 1;
+        f = false;
+        while (l <= r && f == false) {
+            mid = (l + r) / 2;
+            if (arr[mid] == arr1[i] && (mid == n-1 || arr[mid + 1] > arr[mid]))
+                f = true;
+            else
+                    if (arr[mid] == arr1[i])
+                l = mid + 1;
+            else
+                r = mid - 1;
         }
-        while(!isEmpty(root))
-            pop(&root);
+        std::cout << mid + 1 << '\n';
     }
     return 0;
 }

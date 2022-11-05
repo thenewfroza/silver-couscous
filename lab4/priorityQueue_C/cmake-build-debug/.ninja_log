@@ -1,0 +1,27 @@
+# ninja log v5
+0	222	6893383041398380	CMakeFiles/priorityQueue_C.dir/main.cpp.obj	7042807eee2d2f00
+223	318	6893383042336142	priorityQueue_C.exe	6cd811b9646bcad7
+1	185	6893387467776800	CMakeFiles/priorityQueue_C.dir/main.cpp.obj	7042807eee2d2f00
+185	234	6893387468255192	priorityQueue_C.exe	6cd811b9646bcad7
+1	181	6893420736527313	CMakeFiles/priorityQueue_C.dir/main.cpp.obj	7042807eee2d2f00
+182	233	6893420737015680	priorityQueue_C.exe	6cd811b9646bcad7
+1	213	6893424249874799	CMakeFiles/priorityQueue_C.dir/main.cpp.obj	7042807eee2d2f00
+213	264	6893424250353200	priorityQueue_C.exe	6cd811b9646bcad7
+2	182	6893424407359707	CMakeFiles/priorityQueue_C.dir/main.cpp.obj	7042807eee2d2f00
+183	231	6893424407818178	priorityQueue_C.exe	6cd811b9646bcad7
+2	181	6893424776404715	CMakeFiles/priorityQueue_C.dir/main.cpp.obj	7042807eee2d2f00
+181	230	6893424776873148	priorityQueue_C.exe	6cd811b9646bcad7
+2	187	6893424917677310	CMakeFiles/priorityQueue_C.dir/main.cpp.obj	7042807eee2d2f00
+187	238	6893424918165676	priorityQueue_C.exe	6cd811b9646bcad7
+1	184	6893431916005964	CMakeFiles/priorityQueue_C.dir/main.cpp.obj	7042807eee2d2f00
+184	234	6893431916486529	priorityQueue_C.exe	6cd811b9646bcad7
+1	184	6893433653822560	CMakeFiles/priorityQueue_C.dir/main.cpp.obj	7042807eee2d2f00
+185	244	6893433654400625	priorityQueue_C.exe	6cd811b9646bcad7
+1	185	6893434459162783	CMakeFiles/priorityQueue_C.dir/main.cpp.obj	7042807eee2d2f00
+186	238	6893434459661117	priorityQueue_C.exe	6cd811b9646bcad7
+1	184	6893434855499774	CMakeFiles/priorityQueue_C.dir/main.cpp.obj	7042807eee2d2f00
+184	239	6893434856018050	priorityQueue_C.exe	6cd811b9646bcad7
+1	197	6893435545502852	CMakeFiles/priorityQueue_C.dir/main.cpp.obj	7042807eee2d2f00
+198	249	6893435545991211	priorityQueue_C.exe	6cd811b9646bcad7
+1	187	6893436358631964	CMakeFiles/priorityQueue_C.dir/main.cpp.obj	7042807eee2d2f00
+187	240	6893436359130295	priorityQueue_C.exe	6cd811b9646bcad7

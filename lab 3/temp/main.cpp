@@ -1,98 +1,61 @@
 #include <iostream>
+
+
 using namespace std;
 
-class node {
-public:
-    node(char n) {
-        this->data = n;
-        this->link = NULL;
-    }
-
-    char data;
-    node *link;
-};
-
-class node_stack {
-    node* top;
-public:
-    node_stack() {top = NULL;}
-    void push(char data){
-        node* temp = new node(data);
-        //if !temp){
-        //cout << "\nStack Overflow";
-        //exit(1);
-        //}
-        temp->data = data;
-        temp->link = top;
-        top = temp;
-    }
-    void pop()
-    {
-        node* temp;
-        if (top == NULL) {
-            //cout << "\nStack Underflow" << endl;
-            exit(1);
-        }
-        else {
-            temp = top;
-            top = top->link;
-            free(temp);
+int left_bin_search(int array[], int x[], int length, int i) {
+    int left = 0;
+    int middle = 0;
+    int right = length - 1;
+    while (right > left + 1) {
+        middle = (left + right) / 2;
+        if (array[middle] < x[i]) {
+            left = middle - 1;
+        } else {
+            right = middle + 1;
         }
     }
-    bool check(){
-        if (top == nullptr){
-            return 1;
-        } else return 0;
-    }
-    char topel(){
-        if (check()==1){
-            return -1;
-        }
-        return top->data;
+    int b = middle + 1;
+    return b ;
+}
 
+int right_bin_search(int array[], int x[], int length, int i) {
+    int left = 0;
+    int middle = 0;
+    int right = length - 1;
+    while (right >= left) {
+        middle = (left + right) / 2;
+        if (array[middle] <= x[i]) {
+            left = middle + 1;
+        } else {
+            right = middle - 1;
+        }
     }
-};
+    return middle + 1;
+}
 
 int main() {
-    string st;
-    node_stack s;
-    while(cin >> str) {
-        bool flag = 0;
-        for (int i = 0; i < st.size(); i++) {
-            if (st[i] == '(' || st[i] == '[') {
-                s.push(st[i]);
-            }
-            if (st[i] == ')') {
-                if (s.topel() == '(')
-                    s.pop();
-                else {
-                    cout << "NO" << '\n';
-                    flag = 1;
-                    break;
-                }
-            }
-
-            if (st[i] == ']') {
-                if (s.topel() == '[')
-                    s.pop();
-                else {
-                    cout << "NO" << '\n';
-                    flag = 1;
-                    break;
-                }
-            }
-        }
-        if (flag != 1) {
-            if (s.check())
-                cout << "Yes" << '\n';
-        }
-        if (flag != 1) {
-            if (!s.check()) {
-                cout << "NO" << '\n';
-            }
-        }
-        while (!s.check())
-            s.pop();
+    int length;
+    cin >> length;
+    int *array = new int[length];
+    for (int i = 0; i < length; i++) {
+        cin >> array[i];
     }
+
+    int counts_of_numbers;
+    cin >> counts_of_numbers;
+    int *array_counts = new int[counts_of_numbers];
+    for (int i = 0; i < counts_of_numbers; i++) {
+        cin >> array_counts[counts_of_numbers];
+    }
+
+    for (int i = 0; i < counts_of_numbers; i++) {
+        cout << left_bin_search(array, array_counts, length, i);
+        cout << " ";
+        cout << right_bin_search(array, array_counts, length, i) << "\n";
+    }
+
+    delete [] array;
+    delete [] array_counts;
     return 0;
 }

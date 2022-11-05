@@ -1,54 +1,29 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-int max(const int arr[], int n)
-{
-    int max = 0;
-    for (int i = 0; i < n; i++)
-        if (arr[i] > max)
-            max = arr[i];
-    return max;
-}
 
-int sum(const int arr[], int n)
-{
-    int total = 0;
-    for (int i = 0; i < n; i++)
-        total += arr[i];
-    return total;
-}
 
-int searchOfSeparations(const int arr[], int n, int maxLen)
+bool check(int mid, int array[], int n, int K)
 {
-    int total = 0, numPainters = 1;
+    int count = 0;
+    int sum = 0;
     for (int i = 0; i < n; i++) {
-        total += arr[i];
-        if (total > maxLen) {
-
-            total = arr[i];
-            numPainters++;
+        if (array[i] > mid)
+            return false;
+        sum += array[i];
+        if (sum > mid) {
+            count++;
+            sum = array[i];
         }
     }
-    return numPainters;
+    count++;
+
+
+    if (count <= K)
+        return true;
+    return false;
 }
 
-int minMax(int arr[], int n, int k)
-{
-    int lo = max(arr, n);
-    int hi = sum(arr, n);
-
-    while (lo < hi) {
-        int mid = lo + (hi - lo) / 2;
-        int requiredSeparations = searchOfSeparations(arr, n, mid);
-
-        if (requiredSeparations <= k)
-            hi = mid;
-
-        else
-            lo = mid + 1;
-    }
-    return lo;
-}
 
 int partitions(int lo, int maxLen, const int arr[])
 {
@@ -67,6 +42,30 @@ int partitions(int lo, int maxLen, const int arr[])
     else
         return lo + it2;
 }
+int solve(int arr[], int n, int K)
+{
+    int* max = max_element(arr, arr + n);
+    int start = *max;
+    int end = 0;
+
+    for (int i = 0; i < n; i++) {
+        end += arr[i];
+    }
+    int answer = 0;
+    while (start <= end) {
+        int mid = (start + end) / 2;
+
+        if (check(mid, arr, n, K)) {
+            answer = mid;
+            end = mid - 1;
+        }
+        else {
+            start = mid + 1;
+        }
+    }
+
+    return answer;
+}
 
 void numberOfSeparations(int arr[], int n, int k)
 {
@@ -74,7 +73,7 @@ void numberOfSeparations(int arr[], int n, int k)
     for (int i = 0; i < n; i++) {
         total += arr[i];
     }
-    int maxLen = minMax(arr,n,k) - 1;
+    int maxLen = solve(arr,n,k) - 1;
     k--;
     int lo = 0;
     while (k > 0){
