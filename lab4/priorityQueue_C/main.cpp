@@ -1,7 +1,6 @@
 #include<iostream>
 #include<string>
 using namespace std;
-
 void siftDown(pair <int, int> a[], int heapSize) {
     int i = 0;
     while (2 * i + 1 < heapSize) {
@@ -31,7 +30,6 @@ int main() {
     int heapSize = 0, i = 0;
     while (cin >> str) {
         i++;
-
         if (str == "push") {
             int x;
             cin >> x;
