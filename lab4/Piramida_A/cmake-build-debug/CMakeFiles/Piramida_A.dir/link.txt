@@ -1,0 +1,3 @@
+"F:\CLion 2022.2.1\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\Piramida_A.dir/objects.a
+"F:\CLion 2022.2.1\bin\mingw\bin\ar.exe" qc CMakeFiles\Piramida_A.dir/objects.a @CMakeFiles\Piramida_A.dir\objects1.rsp
+"F:\CLion 2022.2.1\bin\mingw\bin\g++.exe" -g -Wl,--whole-archive CMakeFiles\Piramida_A.dir/objects.a -Wl,--no-whole-archive -o Piramida_A.exe -Wl,--out-implib,libPiramida_A.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Piramida_A.dir\linklibs.rsp

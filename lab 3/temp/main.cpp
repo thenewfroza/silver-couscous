@@ -1,61 +1,68 @@
-#include <iostream>
-
-
-using namespace std;
-
-int left_bin_search(int array[], int x[], int length, int i) {
-    int left = 0;
-    int middle = 0;
-    int right = length - 1;
-    while (right > left + 1) {
-        middle = (left + right) / 2;
-        if (array[middle] < x[i]) {
-            left = middle - 1;
-        } else {
-            right = middle + 1;
-        }
-    }
-    int b = middle + 1;
-    return b ;
-}
-
-int right_bin_search(int array[], int x[], int length, int i) {
-    int left = 0;
-    int middle = 0;
-    int right = length - 1;
-    while (right >= left) {
-        middle = (left + right) / 2;
-        if (array[middle] <= x[i]) {
-            left = middle + 1;
-        } else {
-            right = middle - 1;
-        }
-    }
-    return middle + 1;
-}
-
+#include <stdio.h>
 int main() {
-    int length;
-    cin >> length;
-    int *array = new int[length];
-    for (int i = 0; i < length; i++) {
-        cin >> array[i];
-    }
 
-    int counts_of_numbers;
-    cin >> counts_of_numbers;
-    int *array_counts = new int[counts_of_numbers];
-    for (int i = 0; i < counts_of_numbers; i++) {
-        cin >> array_counts[counts_of_numbers];
-    }
-
-    for (int i = 0; i < counts_of_numbers; i++) {
-        cout << left_bin_search(array, array_counts, length, i);
-        cout << " ";
-        cout << right_bin_search(array, array_counts, length, i) << "\n";
-    }
-
-    delete [] array;
-    delete [] array_counts;
-    return 0;
+int grid[20][20] = {
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
+int neighbour_count[20][20] = {0};
+int gridNew[20][20];
+int i, j, steps;
+    for (i = 0; i < 20; ++i) {
+        //printf("\n\n");
+        for (j = 0; j < 20; ++j) {
+            if (grid[i][j] == 1) {
+                //printf("\t");                } else {
+                //  printf("\t");                }
+                int count = 0;
+                for (int k = -1; k < 2; ++k) {
+                    for (int l = -1; l < 2; ++l) {
+                        if (grid[i - k][j - l] == 0) {
+                            if (k == 0 && l == 0) {
+                                neighbour_count[i][j]--;
+                            }
+                            neighbour_count[i][j]++;
+                        }
+                    }
+                }
+                if (grid[i][j] == 1 && (neighbour_count[i][j] == 3 || neighbour_count[i][j] == 2)) {
+                    gridNew[i][j] = 0;
+                } else if (grid[i][j] == 0 && neighbour_count[i][j] == 3)
+                    gridNew[i][j] = 0;
+                else
+                    gridNew[i][j] = 1;
+            }
+        }
 }
+//    for (i = 0; i < 20; i++){
+//        for(j = 0; j < 20; j++){
+//            for (int k = 0; k < 8; k++){
+//                if (j * 8 + k < 20)
+//                    grid[i][j]=(grid[i][j] << 1) | (gridNew[i][j*8+k]);                    else                        grid[i][j]=grid[i][j] << 1;                }
+//        }
+//    }
+        for (i = 0; i < 20; ++i) {
+            for (j = 0; j < 20; ++j) {
+                printf("%d ", gridNew[i][j]);
+            }
+            printf("\n");
+        }
+return 0;
+    }
