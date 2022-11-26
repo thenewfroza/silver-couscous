@@ -240,5 +240,6 @@ int main() {
             a.prev(x);
         }
     }
+
     return 0;
 }
