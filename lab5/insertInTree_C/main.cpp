@@ -9,24 +9,22 @@ std::vector <node> tree;
 int k = 1;
 
 void enter(int top) {
-    if (tree[top].left == -1){
-        if (tree[top].right == -1){
-            if (tree[top].value == 0){
-                tree[top].value = k;
-                k++;
-            }
-        }
-    } else {
-        if (tree[top].value == 0){
-            tree[top].value = k;
-            k++;
-        }
-    }
-
    if (tree[top].left != -1) {
        enter(tree[top].left);
+   }
+   if (tree[top].left == -1){
+       if (tree[top].right == -1){
+           if (tree[top].value == 0){
+
+           }
+       }
        tree[top].value = k;
        k++;
+   } else {
+       if (tree[top].value == 0){
+           tree[top].value = k;
+           k++;
+       }
    }
    if (tree[top].right != -1) {
        enter(tree[top].right);
@@ -42,12 +40,9 @@ int main() {
         tree[i].left--;
         tree[i].right--;
     }
-    for (int i = 0; i < n; i++) {
-    std::cout << tree[i].left << ' ' << tree[i].right << '\n';
-    }
     enter(0);
     for (int i = 0; i < n; i++){
-        std::cout << tree[i].value;
+        std::cout << tree[i].value << ' ';
     }
 
     return 0;

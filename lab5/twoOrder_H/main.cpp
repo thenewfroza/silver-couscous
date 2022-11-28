@@ -1,61 +1,26 @@
 #include<iostream>
 #include<string>
+#include <vector>
 
 
-
-class bst {
-    int value;
-    bst *left, *right;
-
-public:
-    bst();
-    bst(int);
-    bst *insert(bst *, int);
-    void printPostorder(bst*);
-};
-bst ::bst()
-        : value(0)
-        , left(nullptr)
-        , right(nullptr)
-{
-}
-
-bst ::bst(int data) {
-        value = data;
-        left = right = nullptr;
-}
-bst* bst::insert(bst* root,int data) {
-        if (!root)
-            return new bst(data);
-        if (data > root->value)
-            root->right = insert(root->right, data);
-        else if (data < root->value)
-            root->left = insert(root->left, data);
-        return root;
+void reverePostOrder(std::vector<int> &arr, int &iter, int min, int max){
+    if (!(arr[iter] < min) && !(arr[iter] > max) and iter != arr.size()){
+        int temp = arr[iter++];
+        reverePostOrder(arr, iter, min, temp);
+        reverePostOrder(arr, iter, temp, max);
+        std::cout << temp << ' ';
     }
-
-    void bst ::printPostorder(bst* root){
-        if (!root){
-            return ;
-        }
-        printPostorder(root->left);
-        printPostorder(root->right);
-        std::cout << root->value << " ";
-    }
-
+}
 
 int main() {
-    std::string str;
-    bst a, *root = nullptr;
+    std::vector<int> arr;
     int n;
-    int x;
     std::cin >> n;
-    std::cin >> x;
-    root = a.insert(root,x);
+    arr.resize(n);
     for (int i = 0;i < n; i++){
-        std::cin >> x;
-        a.insert(root, x);
+        std::cin >> arr[i];
     }
-    a.printPostorder(root);
+    int iter = 0;
+    reverePostOrder(arr,iter, INT32_MIN, INT32_MAX);
     return 0;
 }

@@ -1,58 +1,37 @@
 #include<iostream>
 #include<vector>
+
+struct node {
+    int value, left, right;
+};
+
+std::vector <node> tree;
+
+void isTree(int top, int min, int max) {
+    if (tree[top].value < max && tree[top].value > min) {
+        if(tree[top].left != -1){
+            isTree(tree[top].left, min, tree[top].value);
+        }
+        if (tree[top].right != -1) {
+            isTree(tree[top].right, tree[top].value, max);
+        }
+    }
+    else {
+        std::cout << "NO";
+        exit(0);
+    }
+}
 int main() {
-    int l, r;
-    bool f = false;
-    int n, m;
+    int n;
     std::cin >> n;
-    std::vector<int> arr(n);
+    tree.resize(n);
     for (int i = 0; i < n; i++) {
-        std::cin >> arr[i];
+        std::cin >> tree[i].value >> tree[i].left >> tree[i].right;
+        tree[i].left--;
+        tree[i].right--;
     }
-    std::cin >> m;
-    std::vector<int> arr1(m);
-    for (int i = 0; i < m; i++) {
-        std::cin >> arr1[i];
-    }
-
-    int mid;
-
-    for (int i = 0; i < m; i++) {
-        l = 0;
-        r = n - 1;
-        f = false;
-        while (l <= r && f == false) {
-            mid = (l + r) / 2;
-            if (arr[mid] == arr1[i] && (mid == 0 || arr[mid - 1] < arr[mid]))
-                f = true;
-            else
-                    if (arr[mid] >= arr1[i])
-                r = mid -1;
-            else
-                l = mid + 1;
-        }
-        if (f == true)
-            std::cout << mid + 1 << ' ';
-        else {
-            std::cout << -1 << ' ' << -1 << '\n';
-            continue;
-        }
-
-
-        l = mid;
-        r = n - 1;
-        f = false;
-        while (l <= r && f == false) {
-            mid = (l + r) / 2;
-            if (arr[mid] == arr1[i] && (mid == n-1 || arr[mid + 1] > arr[mid]))
-                f = true;
-            else
-                    if (arr[mid] == arr1[i])
-                l = mid + 1;
-            else
-                r = mid - 1;
-        }
-        std::cout << mid + 1 << '\n';
-    }
+    if (n != 0)
+        isTree(0,INT32_MIN,INT32_MAX);
+    std::cout << "YES";
     return 0;
 }
