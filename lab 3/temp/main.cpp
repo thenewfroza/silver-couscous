@@ -1,54 +1,72 @@
 #include <iostream>
-#include <string>
-#include <vector>
 using namespace std;
 
-struct Node{
-    int key = NULL;
+struct Node
+{
+    int key;
     int left;
     int right;
+    int height;
 };
 
-vector <Node> BST;
-bool check (int top, int min, int max){
-    //int k=0;
-    bool result = true;
-    if (BST[top].key == NULL){
-        cout << "YES";
-        exit(1);
+int height(Node *arr, int index)
+{
+    if (index == -1)
+    {
+        return 0;
     }
-    if (BST[top].key <= min or max <= BST[top].key){
-        //result = false;
-        cout << "NO";
-        exit(0);
-    }
-    else {
-        if (BST[top].left != -1)
-            check(BST[top].left, min, BST[top].key);
-        if (BST[top].right != -1)
-            check(BST[top].right, BST[top].key, max);
-    }
-    return result;
+
+    return arr[index].height;
 }
 
-int main() {
-    int n, min, max;
-    cin >> n;
-    //vector <Node> BST;
-    BST.resize(n);
-    for (int i = 0; i < n; i++) {
-        cin >> BST[i].key;
-        cin >> BST[i].left;
-        BST[i].left--;
-        cin >> BST[i].right;
-        BST[i].right--;
+int balance_factor(Node *arr, int index)
+{
+    return height(arr, arr[index].right) - height(arr, arr[index].left);
+}
 
+int main()
+{
+
+    int n;
+    int key, left, right;
+    cin >> n;
+
+    Node *arr = new Node[n];
+
+    if (n == 0)
+    {
+        cout << 0;
     }
-    if (n != 0) {
-        if (check(0, -2147483646, 2147483646) == 1) {
-            cout << "YES";
+    else
+    {
+        for (int i = 0; i < n; i++)
+        {
+            cin >> key >> left >> right;
+            arr[i].key = key;
+            arr[i].left = left - 1;
+            arr[i].right = right - 1;
+            arr[i].height = 1;
         }
     }
-    else cout << "YES";
+
+    for (int i = 0; i < n; i++)
+    {
+        arr[i].height = max(height(arr, arr[i].left), height(arr, arr[i].right)) + 1;
+    }
+
+
+
+    for (int i = 0; i < n; i++)
+    {
+
+        int temp = balance_factor(arr, i);
+        if (i == 0){
+            cout << temp + 1 << "\n";
+        }
+        cout << temp << "\n";
+
+    }
+
+    delete[] arr;
     return 0;
 }
