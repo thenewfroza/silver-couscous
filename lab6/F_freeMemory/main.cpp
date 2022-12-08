@@ -1,9 +1,10 @@
 #include<iostream>
 #include<algorithm>
-using namespace std;
-
+#include <string>
+#include <vector>
 struct node {
-    int value, height;
+    std::string value;
+    int height;
     node *left, *right, *parent;
 };
 
@@ -12,7 +13,7 @@ public:
     node * root;
     avlTree() :root(nullptr) {};
 
-    void insert(int x) {
+    void insert(std::string x) {
         node *ins = root, *prev = nullptr;
         while (ins != nullptr) {
             if (ins->value == x)
@@ -43,7 +44,7 @@ public:
         balanceTree(ins);
     }
 
-    node* exist(int x) const {
+    node* exist(std::string x) const {
         node *t = root;
         while (t != nullptr) {
             if (x == t->value) {
@@ -57,7 +58,7 @@ public:
         return nullptr;
     }
 
-    void del(int x) {
+    void del(std::string x) {
         node *t = exist(x), *res = nullptr;
         if (t == nullptr)
             return;
@@ -135,7 +136,8 @@ public:
         }
         delete prevElem;
         balanceTree(res);
-  }
+        return;
+    }
 
     static int bFactor(node* root) {
         if (root == nullptr)
@@ -150,31 +152,39 @@ private:
         int hl, hr;
         root->left != nullptr ? hl = root->left->height : hl = 0;
         root->right != nullptr ? hr = root->right->height : hr = 0;
-        root->height = max(hl, hr) + 1;
+        root->height = std::max(hl, hr) + 1;
         return root->height;
     }
 
-    static node *smallLeft(node* q) {
+    node *smallLeft(node* q) {
         node* p = q->right;
         q->right = p->left;
+        if (q->right != nullptr)
+            q->right->parent = q;
         p->left = q;
         p->parent = q->parent;
         q->parent = p;
-        if (p->parent)
+        if (p->parent != nullptr)
             p->parent->right == q ? p->parent->right = p : p->parent->left = p;
+        else
+            root = p;
         fixHeight(q);
         fixHeight(p);
         return p;
     }
 
-    static node *smallRight(node *p) {
+    node *smallRight(node *p) {
         node *q = p->left;
         p->left = q->right;
+        if (p->left != nullptr)
+            p->left->parent = p;
         q->right = p;
         q->parent = p->parent;
         p->parent = q;
         if (q->parent)
             q->parent->right == p ? q->parent->right = q : q->parent->left = q;
+        else
+            root = q;
         fixHeight(p);
         fixHeight(q);
         return q;
@@ -187,15 +197,15 @@ private:
         return t;
     }
 
-    static node *balance(node *p) {
+    node *balance(node *p) {
         fixHeight(p);
         if (bFactor(p) == 2) {
-            if (bFactor(p->right) == -1)
+            if (bFactor(p->right) < 0)
                 p->right = smallRight(p->right);
             return smallLeft(p);
         }
         if (bFactor(p) == -2) {
-            if (bFactor(p->left) == 1)
+            if (bFactor(p->left) > 0)
                 p->left = smallLeft(p->left);
             return smallRight(p);
         }
@@ -210,27 +220,35 @@ private:
         }
     }
 };
-int main() {
-    cin.tie(nullptr);
-    ios_base::sync_with_stdio(false);
+
+
+
+int main(){
+    std::string toDel;
     avlTree a;
+    int counter = 0;
+    std::vector<std::string> toFind;
     int n;
-    char command;
     std::cin >> n;
-    for (int i = 0; i < n; i++) {
-        int x;
-        std::cin >> command >> x;
-        if (command == 'A') {
-            a.insert(x);
-            std::cout << avlTree::bFactor(a.root) << '\n';
+    toFind.resize(n);
+    for (int i = 0; i < n; i++){
+        std::cin >> toFind[i];
+    }
+    for (int i = 0; i < n; i++){
+        if (a.exist(toFind[i]) == nullptr) {
+            a.insert(toFind[i]);
+            continue;
         }
-        if (command == 'D') {
-            a.del(x);
-            std::cout << avlTree::bFactor(a.root) << '\n';
-        }
-        if (command == 'C') {
-            a.exist(x) ? std::cout << "Y\n" : std::cout << "N\n";
+        else {
+            avlTree b;
+            for (int j = 0; j < toFind[i].size(); j++){
+                toDel = toFind[i][j];
+                if (b.exist(toFind[i]) == nullptr){
+                    b.insert(toDel);
+                    counter++;
+                }
+            }
         }
     }
-    return 0;
+    std::cout << counter;
 }
