@@ -17,7 +17,6 @@ void buildSegmentalTree(int N, int n){
     for (int i = n - N - 1; i >= 0; i--){
         arr[i].left = arr [2 * i + 1].left;
         arr[i].right = arr[2 * i + 2].right;
-
     }
 }
 void update(int v, int newValue, int l, int r, int index){
