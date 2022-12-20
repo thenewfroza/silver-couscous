@@ -1,0 +1,7 @@
+F:\Labs\1 sem\algo\introsort\Solution1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+F:\Labs\1 sem\algo\introsort\Solution1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+F:\Labs\1 sem\algo\introsort\Solution1\ConsoleApplication1\obj\Debug\ConsoleApplication1.csproj.AssemblyReference.cache
+F:\Labs\1 sem\algo\introsort\Solution1\ConsoleApplication1\obj\Debug\ConsoleApplication1.csproj.SuggestedBindingRedirects.cache
+F:\Labs\1 sem\algo\introsort\Solution1\ConsoleApplication1\obj\Debug\ConsoleApplication1.csproj.CoreCompileInputs.cache
+F:\Labs\1 sem\algo\introsort\Solution1\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+F:\Labs\1 sem\algo\introsort\Solution1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
